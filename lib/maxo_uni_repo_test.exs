@@ -3,6 +3,6 @@ defmodule MaxoUniRepoTest do
   use MnemeDefaults
 
   test "greeting" do
-    auto_assert(MaxoUniRepo.greeting())
+    auto_assert("Welcome to Maxo!" <- MaxoUniRepo.greeting())
   end
 end
