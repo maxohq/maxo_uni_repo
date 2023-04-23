@@ -1,8 +1,14 @@
 defmodule MaxoUniRepo.Config do
+  @moduledoc """
+  All configuration options for `:maxo_uni_repo` package
+  """
+
+  @doc "The module name for the main repo, eg: `MyApp.Repo`"
   def main_repo do
     from_env(:main_repo)
   end
 
+  @doc "The main application name , eg: `:my_app`"
   def main_app do
     from_env(:main_app)
   end
@@ -11,19 +17,35 @@ defmodule MaxoUniRepo.Config do
     from_env(:db_types, ["mysql", "psql", "sqlite"])
   end
 
+  @doc """
+  Repo responsible for Sqlite
+  - defaults to runtime generated module like `MyApp.Repo.SqliteRepo`
+  """
   def sqlite_repo do
-    Module.concat([main_repo(), :SqliteRepo])
+    from_env(:sqlite_repo, repo_mod(:SqliteRepo))
   end
 
+  @doc """
+  Repo responsible for MySQL
+  - defaults to runtime generated module like `MyApp.Repo.MysqlRepo`
+  """
   def mysql_repo do
-    Module.concat([main_repo(), :MysqlRepo])
+    from_env(:mysql_repo, repo_mod(:MysqlRepo))
   end
 
+  @doc """
+  Repo responsible for Postgres
+  - defaults to runtime generated module like `MyApp.Repo.PsqlRepo`
+  """
   def psql_repo do
-    Module.concat([main_repo(), :PsqlRepo])
+    from_env(:psql_repo, repo_mod(:PsqlRepo))
   end
 
   def from_env(key, default \\ nil) do
     Application.get_env(:maxo_uni_repo, key, default)
+  end
+
+  defp repo_mod(postfix) do
+    Module.concat([main_repo(), postfix])
   end
 end
