@@ -1,4 +1,8 @@
 defmodule MaxoUniRepo.Setup do
+  @moduledoc """
+  Setup module to contain logic how to cleanly switch between different repositories
+  - also how to configure the main Ecto repo on boot
+  """
   alias MaxoUniRepo.Config
 
   def setup_repo!(boot \\ true) do
@@ -10,7 +14,8 @@ defmodule MaxoUniRepo.Setup do
 
   def assert_correct_db_type! do
     if dbtype() not in Config.valid_db_types() do
-      raise "PLEASE PROVIDE `DBTYPE` ENV variable - psql / mysql / sqlite!"
+      dbtypes = Enum.join(Config.valid_db_types(), " / ")
+      raise "PLEASE PROVIDE `#{Config.dbtype_env_name()}` ENV variable - #{dbtypes}!"
     end
   end
 
@@ -19,7 +24,7 @@ defmodule MaxoUniRepo.Setup do
   def repo_module("psql"), do: Config.psql_repo()
   def repo_module("sqlite"), do: Config.sqlite_repo()
 
-  def dbtype, do: System.get_env("DBTYPE")
+  def dbtype, do: System.get_env(Config.dbtype_env_name())
   def dbtype?(type), do: dbtype() == type
 
   def to_mysql(boot \\ true), do: ensure_repo_started(:myxql, Config.mysql_repo(), boot)

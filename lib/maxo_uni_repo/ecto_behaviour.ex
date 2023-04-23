@@ -1,4 +1,11 @@
 defmodule MaxoUniRepo.EctoBehaviour do
+  @moduledoc """
+  Defines the Ecto behaviour to be used by [MaxoAdapt](https://github.com/maxohq/maxo_adapt).
+  - also provides some convenience functions for introspection + to proxy most used functions with defaults
+
+  Accepts `opts`, that are directly passed to MaxoAdopt.
+  """
+
   defmacro __using__(opts) do
     quote do
       use MaxoAdapt, unquote(opts)

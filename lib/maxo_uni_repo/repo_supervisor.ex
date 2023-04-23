@@ -8,16 +8,28 @@ defmodule MaxoUniRepo.RepoSupervisor do
     DynamicSupervisor.start_link(__MODULE__, init_arg, name: __MODULE__)
   end
 
+  @doc """
+  Starts repo supervision with default arguments
+  """
   def start_child(repo) do
     spec = %{id: repo, start: {repo, :start_link, []}}
     DynamicSupervisor.start_child(__MODULE__, spec)
   end
 
+  @doc """
+  Starts repo supervision with custom arguments, like:
+  ```
+  [url: "postgres://user:pass@host:1111/db"]
+  ```
+  """
   def start_child(repo, opts) when is_list(opts) do
     spec = %{id: repo, start: {repo, :start_link, [opts]}}
     DynamicSupervisor.start_child(__MODULE__, spec)
   end
 
+  @doc """
+  Stops repo supervision for a repo module
+  """
   def stop_child(repo) do
     pid = pid_for_repo(repo)
 

@@ -1,4 +1,9 @@
 defmodule MaxoUniRepo.RepoSetup do
+  @moduledoc """
+  Convenience module to help you quickly generate 3 repos.
+  For special requirements those can be also implemented in the manual way, without MaxoUniRepo.RepoSetup.
+  """
+
   alias MaxoUniRepo.Config
 
   defmacro __using__(_) do
@@ -8,6 +13,9 @@ defmodule MaxoUniRepo.RepoSetup do
     end
   end
 
+  @doc """
+  Generates during compile-time 3 repo modules for each supported DB driver.
+  """
   defmacro common(do: block) do
     quote do
       defmodule unquote(Config.psql_repo()) do
