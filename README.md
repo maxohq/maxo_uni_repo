@@ -1,8 +1,10 @@
 # MaxoUniRepo
 
-[![Hex.pm](https://img.shields.io/hexpm/v/maxo_uni_repo.svg)](https://hex.pm/packages/maxo_uni_repo)
-[![Docs](https://img.shields.io/badge/hexdocs-docs-8e7ce6.svg)](https://hexdocs.pm/maxo_uni_repo)
-[![CI](https://github.com/maxohq/maxo_uni_repo/actions/workflows/ci.yml/badge.svg)](https://github.com/maxohq/maxo_uni_repo/actions/workflows/ci.yml)
+[![CI](https://github.com/maxohq/maxo_uni_repo/actions/workflows/ci.yml/badge.svg?style=flat)](https://github.com/maxohq/maxo_uni_repo/actions/workflows/ci.yml)
+[![Hex.pm](https://img.shields.io/hexpm/v/maxo_uni_repo.svg?style=flat)](https://hex.pm/packages/maxo_uni_repo)
+[![Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg?style=flat)](https://hexdocs.pm/maxo_uni_repo)
+[![Total Download](https://img.shields.io/hexpm/dt/maxo_uni_repo.svg?style=flat)](https://hex.pm/packages/maxo_uni_repo)
+[![License](https://img.shields.io/hexpm/l/maxo_uni_repo.svg?style=flat)](https://github.com/maxohq/maxo_uni_repo/blob/main/LICENCE)
 
 `MaxoUniRepo` helps you to support multiple DB engines with runtime DB switching all with a single Ecto Repo module.
 
