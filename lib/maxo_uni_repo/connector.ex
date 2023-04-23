@@ -3,13 +3,18 @@ defmodule MaxoUniRepo.Connector do
   Runtime dynamic connector based on URL
 
   Examples:
-    iex> MaxoUniRepo.Connector.connect("file:./check.db?mode=memory&cache=shared")
-    iex> MaxoUniRepo.Connector.connect("postgres://postgres:postgres@localhost:5432/postgres")
-    iex> MaxoUniRepo.Connector.connect("mysql://root:mysql@localhost:5552/my_db")
 
+  ```elixir
+  iex> MaxoUniRepo.Connector.connect("file:./check.db?mode=memory&cache=shared")
+  iex> MaxoUniRepo.Connector.connect("postgres://postgres:postgres@localhost:5432/postgres")
+  iex> MaxoUniRepo.Connector.connect("mysql://root:mysql@localhost:5552/my_db")
+  ```
   Test:
-    iex> MyApp.Repo.query("select count(*) from users")
-    iex> MyApp.Repo.query("select * from users limit 1")
+
+  ```elixir
+  iex> MyApp.Repo.query("select count(*) from users")
+  iex> MyApp.Repo.query("select * from users limit 1")
+  ```
 
   """
 
