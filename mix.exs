@@ -1,7 +1,7 @@
 defmodule MaxoUniRepo.MixProject do
   use Mix.Project
   @github_url "https://github.com/maxohq/maxo_uni_repo"
-  @version "0.1.0"
+  @version "0.1.1"
   @description "MaxoUniRepo helps you to support multiple DB engines with a single Ecto Repo"
 
   def project do
