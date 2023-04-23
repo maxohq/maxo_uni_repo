@@ -4,6 +4,7 @@ defmodule MaxoUniRepo.Setup do
   - also how to configure the main Ecto repo on boot
   """
   alias MaxoUniRepo.Config
+  alias MaxoUniRepo.Typer
 
   def setup_repo!(boot \\ true) do
     assert_correct_db_type!()
@@ -19,10 +20,7 @@ defmodule MaxoUniRepo.Setup do
     end
   end
 
-  def repo_module(), do: repo_module(dbtype())
-  def repo_module("mysql"), do: Config.mysql_repo()
-  def repo_module("psql"), do: Config.psql_repo()
-  def repo_module("sqlite"), do: Config.sqlite_repo()
+  def repo_module(), do: Typer.repo_for_type(dbtype())
 
   def dbtype, do: System.get_env(Config.dbtype_env_name())
   def dbtype?(type), do: dbtype() == type

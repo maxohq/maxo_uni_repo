@@ -15,33 +15,23 @@ defmodule MaxoUniRepo.Connector do
   iex> MyApp.Repo.query("select count(*) from users")
   iex> MyApp.Repo.query("select * from users limit 1")
   ```
-
   """
 
-  alias MaxoUniRepo.Config
+  alias MaxoUniRepo.Typer
+  alias MaxoUniRepo.Setup
 
   def connect(url) do
-    {repo, opts} =
-      cond do
-        String.starts_with?(url, "postgres:") -> {Config.psql_repo(), normal_params(url)}
-        String.starts_with?(url, "mysql:") -> {Config.mysql_repo(), normal_params(url)}
-        String.starts_with?(url, "file:") -> {Config.sqlite_repo(), sqlite_params(url)}
-      end
-
-    MaxoUniRepo.Setup.start_dynamic(repo, opts)
+    type = Typer.url_type(url)
+    repo = Typer.repo_for_type(type)
+    opts = opts_for(type, url)
+    Setup.start_dynamic(repo, opts)
   end
 
-  defp normal_params(url) do
-    [
-      url: url,
-      priv: "priv/repo"
-    ]
+  defp opts_for(:sqlite, url) do
+    [database: url, priv: "priv/repo"]
   end
 
-  defp sqlite_params(url) do
-    [
-      database: url,
-      priv: "priv/repo"
-    ]
+  defp opts_for(type, url) when type in [:psql, :mysql] do
+    [url: url, priv: "priv/repo"]
   end
 end
