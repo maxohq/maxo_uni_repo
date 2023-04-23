@@ -32,4 +32,10 @@ defmodule MaxoUniRepo.Typer do
   def repo_for_type("sqlite"), do: Config.sqlite_repo()
 
   def repo_for_type(t), do: raise("NO known Repo for type #{t}!")
+
+  @doc "Returns driver app for type"
+  def app_for_type(:mysql), do: :myxql
+  def app_for_type(:psql), do: :postgrex
+  def app_for_type(:sqlite), do: :exqlite
+  def app_for_type(t), do: raise("NO known app for type #{t}!")
 end

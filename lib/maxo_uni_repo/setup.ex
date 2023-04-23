@@ -46,6 +46,8 @@ defmodule MaxoUniRepo.Setup do
   def start_dynamic(repo_mod, opts) do
     ensure_current_stopped()
     setup_env(repo_mod)
+    db_app = Typer.repo_type(repo_mod) |> Typer.app_for_type()
+    :application.ensure_all_started(db_app)
     MaxoUniRepo.RepoSupervisor.start_child(repo_mod, opts)
     Config.main_repo().configure(repo_mod)
   end
