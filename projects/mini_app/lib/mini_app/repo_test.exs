@@ -19,6 +19,8 @@ defmodule MiniApp.RepoTest do
   end
 
   test "1" do
+    IO.puts("TEST 1: #{inspect(self())}")
+    IO.puts("TEST 1: #{inspect(Ecto.Repo.Registry.lookup(MiniApp.Repo.SqliteRepo))}")
     res = MiniApp.Repo.query("select * from comments")
 
     auto_assert(
@@ -33,6 +35,8 @@ defmodule MiniApp.RepoTest do
   end
 
   test "2" do
+    IO.puts("TEST 2: #{inspect(self())}")
+    IO.puts("TEST 2: #{inspect(Ecto.Repo.Registry.lookup(MiniApp.Repo.SqliteRepo))}")
     MiniApp.Repo.query("insert into comments(id,title) values (3, '3first')")
     res = MiniApp.Repo.query("select * from comments")
 
