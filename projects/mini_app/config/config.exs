@@ -9,4 +9,7 @@ config :mini_app, ecto_repos: [MiniApp.Repo.SqliteRepo]
 
 config :mini_app, MiniApp.Repo.SqliteRepo,
   database: "./data/sqlite.db",
-  priv: "priv/repo"
+  priv: "priv/repo",
+  pool_size: 1
+
+config :maxo_adapt, default_mode: :get_dict

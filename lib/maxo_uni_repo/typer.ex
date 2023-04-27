@@ -17,6 +17,7 @@ defmodule MaxoUniRepo.Typer do
       String.starts_with?(url, "postgres:") -> :psql
       String.starts_with?(url, "mysql:") -> :mysql
       String.starts_with?(url, "file:") -> :sqlite
+      String.starts_with?(url, ":memory:") -> :sqlite
       true -> raise "NO known DB type for #{url}!"
     end
   end
