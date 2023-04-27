@@ -18,4 +18,7 @@ if config_env() == :test do
 
   # should we log debug messages?
   config :maxo_test_iex, debug: false
+
+  ## Use flexible proc_dict for tests
+  config :maxo_adapt, default_mode: :get_dict
 end
