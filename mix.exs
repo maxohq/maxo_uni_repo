@@ -46,7 +46,7 @@ defmodule MaxoUniRepo.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:maxo_adapt, "~> 0.1.7"},
+      {:maxo_adapt, "~> 0.1.8"},
       {:ecto, ">= 0.0.0"},
 
       ## Dev
